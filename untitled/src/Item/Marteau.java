@@ -5,9 +5,9 @@ import Vaisseaux.Vaisseau;
 public class Marteau implements Items {
 
     public void utiliser(Vaisseau vaisseau) {
-       vaisseau.setPointDeVie(vaisseau.getPointDeVie() + 20);
+       vaisseau.addPointDeVie(20);
        if (vaisseau.getPointDeVie()>vaisseau.getPointVieMax()){
-           vaisseau.setPointDeVie(vaisseau.getPointVieMax());
+           vaisseau.addPointDeVie(vaisseau.getPointVieMax());
        }
     }
 }
