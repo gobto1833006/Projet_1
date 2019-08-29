@@ -12,7 +12,7 @@ public class Vaisseau {
     private int pointDeVie;
     private int pointVieMax=100;
     private int pointBouclier=0;
-    private ArrayList<Items> inventaire;
+    private ArrayList<Items> inventaire=new ArrayList<Items>();
     private int nbBouclierThermique=0;
     private LinkedList<Planetes> journalDeBord;
 
@@ -75,5 +75,12 @@ public class Vaisseau {
 
     public void addNbBouclierThermique(int nbBouclierThermique) {
         this.nbBouclierThermique += nbBouclierThermique;
+    }
+
+    public void imprimerInventaire(){
+        System.out.print("Inventaire :");
+        for (int i=0;i<inventaire.size();i++){
+            System.out.print(inventaire.get(i).getNom() + ", ");
+        }
     }
 }

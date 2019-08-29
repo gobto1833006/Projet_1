@@ -1,3 +1,5 @@
+import Vaisseaux.Vaisseau;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +9,7 @@ public class Main {
 
         String choix;
         boolean loop = true;
+        Vaisseau vaisseau = new Vaisseau();
 
         System.out.println("Bienvenue dans Space Explorer, le jeu d'exploration de l'espace \n\nQue désirez vous faire ?\n 1-Vérifier le vaisseau\n 2-Explorer une planète\n 3-Utiliser un objet de l'inventaire\n 4-Revenir en arrière");
         while (loop == true) {
@@ -17,7 +20,8 @@ public class Main {
                 switch (choix) {
 
                     case ("1"):
-                        System.out.println("oui");
+                        EtatVaisseau(vaisseau);
+
                         break;
                     case ("2"):
 
@@ -32,4 +36,20 @@ public class Main {
             }
         }
     }
+
+    public static void EtatVaisseau(Vaisseau vaisseau) {
+        System.out.println("État du vaisseau :\n Point de vie :" + vaisseau.getPointDeVie());
+        if (vaisseau.getPointBouclier() != 0) {
+            System.out.println(" Protection bouclier :" + vaisseau.getPointBouclier());
+        }
+        System.out.println(" Quantité de carburant :" + vaisseau.getCarburant());
+        if (vaisseau.getNbBouclierThermique() != 0) {
+            System.out.println(" Épaisseurs de protection thermique :" + vaisseau.getNbBouclierThermique());
+        }
+//System.out.println("Planète Courante");
+        vaisseau.imprimerInventaire();
+
+
+    }
 }
+
