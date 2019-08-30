@@ -39,8 +39,8 @@ public abstract class Planetes {
 
             if (!(vaisseau.getInventaire().contains(new Bombe()))) {
                 int pointDeVieAvant = vaisseau.getPointDeVie();
-                vaisseau.addPointDeVie((int) (Math.random() * 10 + 5));
-                System.out.println("Des pirates vous attaque! Vous perdez " + Math.abs(pointDeVieAvant - vaisseau.getPointDeVie()) + " point de vie. Il vous reste maintenant " + vaisseau.getPointDeVie() + " point de vie"));
+                vaisseau.addPointDeVie(-(int) (Math.random() * 10 + 5));
+                System.out.println("Des pirates vous attaque! Vous perdez " + (pointDeVieAvant - vaisseau.getPointDeVie()) + " point de vie. Il vous reste maintenant " + vaisseau.getPointDeVie() + " point de vie");
             } else {
                 System.out.println("Des pirates vous attaque! Heureusement, votre bombe dans votre inventaire les intimide et ils ne vous attaquent pas. Il n'ont pas l'air de savoir que la bombe a été designé pour exploser votre vaisseau et non pas pour vous défendre");
             }
