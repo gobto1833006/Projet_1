@@ -14,7 +14,7 @@ public class Vaisseau {
     private int pointBouclier=0;
     private ArrayList<Items> inventaire=new ArrayList<Items>();
     private int nbBouclierThermique=0;
-    private LinkedList<Planetes> journalDeBord;
+    private LinkedList<Planetes> journalDeBord=new LinkedList<Planetes>();
 
     public void fonctionDamage(int damage){
         if (pointBouclier !=0 && pointBouclier>damage){
@@ -49,8 +49,8 @@ public class Vaisseau {
         return inventaire;
     }
 
-    public void setInventaire(ArrayList<Items> inventaire) {
-        this.inventaire = inventaire;
+    public void addInventaire(Items items) {
+        inventaire.add(items);
     }
 
     public int getPointVieMax() {
@@ -77,10 +77,22 @@ public class Vaisseau {
         this.nbBouclierThermique += nbBouclierThermique;
     }
 
+    public int lastPlanetOrder(){return journalDeBord.peek().getOrdre();}
+
+    public void addJournalDeBord(Planetes planetes){
+        journalDeBord.addLast(planetes);
+    }
+
+
     public void imprimerInventaire(){
         System.out.print("Inventaire :");
         for (int i=0;i<inventaire.size();i++){
             System.out.print(inventaire.get(i).getNom() + ", ");
+        }
+    }
+    public void imprimerInventaireChoix(){
+        for (int i=0;i<inventaire.size();i++){
+            System.out.println(i + "-" + inventaire.get(i).getNom());
         }
     }
 }

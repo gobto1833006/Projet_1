@@ -1,3 +1,4 @@
+import Planete.*;
 import Vaisseaux.Vaisseau;
 
 import java.util.Scanner;
@@ -10,6 +11,9 @@ public class Main {
         String choix;
         boolean loop = true;
         Vaisseau vaisseau = new Vaisseau();
+        vaisseau.addJournalDeBord(new Terre());
+        Planetes[] poolPlanetes ={new Lune(),new Mars(),new Mercure(),new Terre(),new Venus()};
+
 
         System.out.println("Bienvenue dans Space Explorer, le jeu d'exploration de l'espace \n\nQue désirez vous faire ?\n 1-Vérifier le vaisseau\n 2-Explorer une planète\n 3-Utiliser un objet de l'inventaire\n 4-Revenir en arrière");
         while (loop == true) {
@@ -24,10 +28,14 @@ public class Main {
 
                         break;
                     case ("2"):
+                        int nextPlanet = (int)(Math.random()*5);
+                        poolPlanetes[nextPlanet].explorer(vaisseau);
+                        vaisseau.addJournalDeBord(poolPlanetes[nextPlanet]);
 
                         break;
 
                     case ("3"):
+                        System.out.println("Quel objet souhaitez vous utiliser?");
 
                         break;
 
