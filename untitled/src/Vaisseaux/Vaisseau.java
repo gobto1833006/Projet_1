@@ -77,7 +77,7 @@ public class Vaisseau {
         this.nbBouclierThermique += nbBouclierThermique;
     }
 
-    public int lastPlanetOrder(){return journalDeBord.peek().getOrdre();}
+    public int lastPlanetOrder(){return journalDeBord.getLast().getOrdre();}
 
     public void addJournalDeBord(Planetes planetes){
         journalDeBord.addLast(planetes);
