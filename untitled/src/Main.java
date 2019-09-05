@@ -11,6 +11,7 @@ public class Main {
         String choix;
         boolean loop = true;
         Vaisseau vaisseau = new Vaisseau();
+        Vaisseau vaisseau2 = new Vaisseau();
         vaisseau.addJournalDeBord(new Terre());
         Planetes[] poolPlanetes = {new Lune(), new Mars(), new Mercure(), new Terre(), new Venus()};
         System.out.println("Bienvenue dans Space Explorer, le jeu d'exploration de l'espace \n");
@@ -27,7 +28,14 @@ public class Main {
                         EtatVaisseau(vaisseau);
                         break;
                     case ("2"):
-                        vaisseau.setVieuxVaisseau(vaisseau);
+                        try {
+                            vaisseau2 = (Vaisseau) vaisseau.clone();
+                        } catch (Exception clone) {
+                            if (clone.equals(new CloneNotSupportedException())){
+                                System.out.println("BUG");
+                            }
+                        }
+                        vaisseau.setVieuxVaisseau(vaisseau2);
                         int nextPlanet = (int) (Math.random() * 5);
                         poolPlanetes[nextPlanet].explorer(vaisseau);
                         vaisseau.addJournalDeBord(poolPlanetes[nextPlanet]);
@@ -36,7 +44,14 @@ public class Main {
 
                     case ("3"):
                         System.out.println("Quel objet souhaitez vous utiliser?");
-                        vaisseau.setVieuxVaisseau(vaisseau);
+                        try {
+                            vaisseau2 = (Vaisseau) vaisseau.clone();
+                        } catch (Exception clone) {
+                            if (clone.equals(new CloneNotSupportedException())){
+                                System.out.println("BUG");
+                            }
+                        }
+                        vaisseau.setVieuxVaisseau(vaisseau2);
                         vaisseau.imprimerInventaire();
                         choix = scanner.next();
                         for (int i = 0; i < vaisseau.getInventaire().size(); i++) {

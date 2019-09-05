@@ -6,7 +6,7 @@ import Planete.Planetes;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Vaisseau {
+public class Vaisseau implements Cloneable{
 
     private int carburant = 1000;
     private int pointDeVie = 100;
@@ -16,6 +16,10 @@ public class Vaisseau {
     private int nbBouclierThermique = 0;
     private LinkedList<Planetes> journalDeBord = new LinkedList<Planetes>();
     private Vaisseau vieuxVaisseau;
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public void fonctionDamage(int damage) {
         if (pointBouclier != 0 && pointBouclier > damage) {
