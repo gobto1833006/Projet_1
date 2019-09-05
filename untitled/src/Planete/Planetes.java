@@ -24,11 +24,12 @@ public abstract class Planetes {
     public void explorer(Vaisseau vaisseau) {
         System.out.println("Vous visitez la planète " + nom + ".");
         System.out.println("Vous dépensez " + (Math.abs(ordre - vaisseau.lastPlanetOrder())) * 100 + " points de carburant");
+        vaisseau.addCarburant(-(Math.abs(ordre - vaisseau.lastPlanetOrder()) * 100));
         if (atmosphere) {
             if (vaisseau.getNbBouclierThermique() != 0) {
                 vaisseau.addNbBouclierThermique(-1);
                 System.out.println(
-                        "À l'entrée dans l'atmosphère, vous perdez un bouclier thermique. Il vous reste maintenant " + vaisseau.getNbBouclierThermique() + "bouclier thermique équipé");
+                        "À l'entrée dans l'atmosphère, vous perdez un bouclier thermique. Il vous reste maintenant " + vaisseau.getNbBouclierThermique() + " bouclier thermique équipé");
             } else {
                 int pointDeVieAvant = vaisseau.getPointDeVie();
                 vaisseau.addPointDeVie(-((int) (Math.random() * 5 + 5)));
@@ -36,18 +37,23 @@ public abstract class Planetes {
             }
         }
         if (Math.random() * chanceCombat < 1) {
-
-            if (!(vaisseau.getInventaire().contains(new Bombe()))) {
+            boolean hasbomb = false;
+            for (int i = 0; i < vaisseau.getInventaire().size(); i++) {
+                if (vaisseau.getInventaire().get(i).getNom().equals("Bombe")){
+                    hasbomb=true;
+                }
+            }
+            if (!hasbomb) {
                 int pointDeVieAvant = vaisseau.getPointDeVie();
                 vaisseau.addPointDeVie(-(int) (Math.random() * 10 + 5));
                 System.out.println("Des pirates vous attaque! Vous perdez " + (pointDeVieAvant - vaisseau.getPointDeVie()) + " point de vie. Il vous reste maintenant " + vaisseau.getPointDeVie() + " point de vie");
             } else {
-                System.out.println("Des pirates vous attaque! Heureusement, votre bombe dans votre inventaire les intimide et ils ne vous attaquent pas. Il n'ont pas l'air de savoir que la bombe a été designé pour exploser votre vaisseau et non pas pour vous défendre");
+                System.out.println("Des pirates vous attaque! Heureusement, votre bombe dans votre inventaire les intimide et ils ne vous attaquent pas. Ils n'ont pas l'air de savoir que la bombe a été designé pour exploser votre vaisseau et non pas pour vous défendre");
             }
         }
         while (Math.random() * chanceItem < 5) {
-            vaisseau.addInventaire(poolItem[(int)(Math.random()*5)]);
-            System.out.println("Vous obtenez un "+ vaisseau.getInventaire().get(vaisseau.getInventaire().size()-1).getNom() + "!");
+            vaisseau.addInventaire(poolItem[(int) (Math.random() * 5)]);
+            System.out.println("Vous obtenez un " + vaisseau.getInventaire().get(vaisseau.getInventaire().size() - 1).getNom() + "!");
         }
 
 
